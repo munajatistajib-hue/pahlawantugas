@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pahlawan Tugas - TechVerse Academic AI Prompts</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome 6 Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Fonts (Plus Jakarta Sans & Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'tech-red': '#E11D48',
+            'tech-red-dark': '#BE123C',
+            'tech-red-light': '#FFE4E6',
+            'tech-bg': '#F8FAFC',
+            'tech-card': '#FFFFFF',
+            'tech-dark': '#0F172A',
+            'tech-muted': '#64748B',
+            'tech-border': '#E2E8F0',
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #E11D48;
+    }
+
+    /* Content Blur Overlay (Efek Teks Samar-Samar) */
+    .blurred-content {
+      filter: blur(4px);
+      opacity: 0.45;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+
+<body class="bg-tech-bg text-tech-dark font-sans antialiased min-h-screen flex flex-col selection:bg-tech-red selection:text-white">
+
+  <!-- ================= VIEW 1: STORE FRONT VIEW (FOR BUYERS) ================= -->
+  <div id="store-view" class="flex-grow flex flex-col">
+    
+    <!-- TOP PROMO ANNOUNCEMENT BAR -->
+    <div class="bg-tech-dark text-white text-[11px] sm:text-xs py-2 px-4 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="bg-tech-red text-white text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full tracking-wider animate-pulse">Solusi Deadline</span>
+          <span class="font-medium">Stres Mikirin Tugas? • Prompt AI Akademik Anti-Tolak Dosen Cuma Rp 5.000!</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-6 text-[11px] text-slate-300">
+          <span><i class="fa-solid fa-clock-rotate-left text-tech-red mr-1"></i> Hemat 20+ Jam Begadang</span>
+          <span><i class="fa-solid fa-shield-halved text-tech-red mr-1"></i> Format Natural 0% Terdeteksi AI</span>
+          <span><i class="fa-brands fa-whatsapp text-tech-red mr-1"></i> Support 24/7</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN NAVBAR (TechVerse Style) -->
+    <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-tech-border shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+        
+        <!-- Logo Brand -->
+        <a href="#" class="flex items-center space-x-3 shrink-0">
+          <div class="w-10 h-10 rounded-xl bg-tech-red text-white flex items-center justify-center font-black text-xl shadow-md shadow-tech-red/30">
+            <i class="fa-solid fa-atom"></i>
+          </div>
+          <div>
+            <span class="font-display font-extrabold text-xl sm:text-2xl text-tech-dark tracking-tight">Pahlawan<span class="text-tech-red">Tugas</span></span>
+            <span class="block text-[9px] font-bold text-tech-muted tracking-widest uppercase -mt-1">Academic Prompt Store</span>
+          </div>
+        </a>
+
+        <!-- Search Bar (TechVerse Center Header) -->
+        <div class="hidden md:flex flex-1 max-w-md mx-4 relative">
+          <input type="text" id="search-input" onkeyup="searchPrompts()" placeholder="Cari prompt makalah, skripsi, jurnal..." 
+                 class="w-full bg-tech-bg border border-tech-border rounded-full pl-11 pr-4 py-2.5 text-xs text-tech-dark focus:bg-white focus:border-tech-red outline-none transition shadow-inner">
+          <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-tech-muted text-xs"></i>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="hidden lg:flex items-center space-x-6 text-xs font-bold text-tech-dark uppercase tracking-wider">
+          <a href="#katalog" class="hover:text-tech-red transition">Katalog</a>
+          <a href="#cara-pakai" class="hover:text-tech-red transition">Cara Pakai Prompt</a>
+          <a href="#cara-beli" class="hover:text-tech-red transition">Cara Beli</a>
+          <a href="#order-section" class="hover:text-tech-red transition">Checkout</a>
+        </div>
+
+        <!-- Right Cart Action Button -->
+        <div class="flex items-center space-x-3">
+          <a href="#order-section" class="px-5 py-2.5 bg-tech-red hover:bg-tech-red-dark text-white rounded-full text-xs font-bold uppercase tracking-wider transition shadow-md shadow-tech-red/20 flex items-center space-x-2">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Beli Rp 5k</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Categories Navigation Pills Bar -->
+      <div class="border-t border-tech-border bg-white px-4 py-2.5 overflow-x-auto hide-scrollbar">
+        <div class="max-w-7xl mx-auto flex items-center space-x-3 text-xs font-semibold shrink-0">
+          <span class="text-tech-muted uppercase text-[10px] font-bold tracking-widest mr-2">Kategori:</span>
+          <button onclick="filterCategory('all', this)" class="cat-pill active px-4 py-1.5 bg-tech-red text-white rounded-full transition shadow-sm">
+            <i class="fa-solid fa-grip mr-1.5"></i>Semua Prompt
+          </button>
+          <button onclick="filterCategory('makalah', this)" class="cat-pill px-4 py-1.5 bg-tech-bg hover:bg-tech-red-light hover:text-tech-red text-tech-dark border border-tech-border rounded-full transition">
+            <i class="fa-solid fa-book-open mr-1.5"></i>Makalah
+          </button>
+          <button onclick="filterCategory('skripsi', this)" class="cat-pill px-4 py-1.5 bg-tech-bg hover:bg-tech-red-light hover:text-tech-red text-tech-dark border border-tech-border rounded-full transition">
+            <i class="fa-solid fa-graduation-cap mr-1.5"></i>Skripsi BAB 1-5
+          </button>
+          <button onclick="filterCategory('jurnal', this)" class="cat-pill px-4 py-1.5 bg-tech-bg hover:bg-tech-red-light hover:text-tech-red text-tech-dark border border-tech-border rounded-full transition">
+            <i class="fa-solid fa-newspaper mr-1.5"></i>Jurnal Ilmiah
+          </button>
+          <button onclick="filterCategory('artikel', this)" class="cat-pill px-4 py-1.5 bg-tech-bg hover:bg-tech-red-light hover:text-tech-red text-tech-dark border border-tech-border rounded-full transition">
+            <i class="fa-solid fa-pen-nib mr-1.5"></i>Artikel Akademik
+          </button>
+          <button onclick="filterCategory('presentasi', this)" class="cat-pill px-4 py-1.5 bg-tech-bg hover:bg-tech-red-light hover:text-tech-red text-tech-dark border border-tech-border rounded-full transition">
+            <i class="fa-solid fa-display mr-1.5"></i>Slide Presentasi
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <header class="py-10 sm:py-16 bg-white border-b border-tech-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-r from-tech-dark via-slate-900 to-tech-dark text-white rounded-3xl p-8 sm:p-14 relative overflow-hidden shadow-2xl">
+          
+          <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-tech-red/20 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            
+            <div class="lg:col-span-7 space-y-6">
+              <div class="inline-flex items-center space-x-2 px-3.5 py-1 bg-tech-red text-white rounded-full text-xs font-bold uppercase tracking-wider">
+                <i class="fa-solid fa-face-smile-beam"></i>
+                <span>Stop Begadang & Bebas Pusing Revisi</span>
+              </div>
+
+              <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+                Tugas Beres Lebih Cepat, <span class="text-tech-red">Dosen Puas,</span> Tidur Nyenyak.
+              </h1>
+
+              <p class="text-sm sm:text-base text-slate-300 max-w-xl font-normal leading-relaxed">
+                Capek ngetik berjam-jam tapi tulisan dibilang kaku kayak AI? Gunakan racikan prompt akademik khusus yang bikin AI berpikir dan menulis otomatis persis seperti mahasiswa cumlaude.
+              </p>
+
+              <div class="flex flex-wrap items-center gap-4 pt-2">
+                <a href="#katalog" class="px-8 py-4 bg-tech-red hover:bg-tech-red-dark text-white font-extrabold text-xs uppercase tracking-widest rounded-full transition shadow-lg shadow-tech-red/40 flex items-center space-x-2">
+                  <span>Selamatkan Tugasmu (Cuma Rp 5k)</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                
+                <a href="#cara-pakai" class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-widest rounded-full border border-white/20 transition">
+                  <i class="fa-solid fa-circle-question mr-1.5"></i> Cara Pakai Prompt
+                </a>
+              </div>
+
+              <div class="pt-6 border-t border-slate-800 flex flex-wrap items-center gap-6 text-xs text-slate-300">
+                <div class="flex items-center space-x-2">
+                  <i class="fa-solid fa-circle-check text-tech-red"></i>
+                  <span>Lebih Murah dari Segelas Kopi</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <i class="fa-solid fa-circle-check text-tech-red"></i>
+                  <span>File Langsung Masuk Gmail</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5">
+              <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-white space-y-4 shadow-xl">
+                <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                  <span class="text-xs font-bold text-tech-red uppercase tracking-wider"><i class="fa-solid fa-fire mr-1"></i> Master Release</span>
+                  <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded text-slate-200">Ver. 2026</span>
+                </div>
+
+                <div class="space-y-3 font-mono text-xs">
+                  <div class="bg-black/30 p-3 rounded-xl border border-white/10">
+                    <span class="text-tech-red font-bold">Standard:</span> APA Style 7th & Indikator AI 0%
+                  </div>
+                  <div class="bg-black/30 p-3 rounded-xl border border-white/10">
+                    <span class="text-tech-red font-bold">Output:</span> Makalah, Skripsi 70-80 Hlm, Jurnal
+                  </div>
+                  <div class="bg-black/30 p-3 rounded-xl border border-white/10">
+                    <span class="text-tech-red font-bold">Harga:</span> Rp 5.000 / Module Flat Rate
+                  </div>
+                </div>
+
+                <div class="pt-2">
+                  <a href="#order-section" class="w-full py-3 bg-white text-tech-dark hover:bg-tech-red hover:text-white font-bold text-xs uppercase tracking-widest rounded-xl transition flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-bolt text-tech-red"></i>
+                    <span>Pesan Langsung</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- TRUST & VALUE PROPOSITION BAR -->
+    <section class="py-10 bg-white border-b border-tech-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="flex items-center space-x-4 p-4 bg-tech-bg rounded-2xl border border-tech-border">
+            <div class="w-12 h-12 rounded-xl bg-tech-red-light text-tech-red flex items-center justify-center text-xl shrink-0">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-xs text-tech-dark uppercase">Hasil Gak Kaku</h4>
+              <p class="text-[11px] text-tech-muted">Alur narasi natural & kritis</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-4 p-4 bg-tech-bg rounded-2xl border border-tech-border">
+            <div class="w-12 h-12 rounded-xl bg-tech-red-light text-tech-red flex items-center justify-center text-xl shrink-0">
+              <i class="fa-solid fa-bed"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-xs text-tech-dark uppercase">Bebas Stress Begadang</h4>
+              <p class="text-[11px] text-tech-muted">Selesai dalam hitungan menit</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-4 p-4 bg-tech-bg rounded-2xl border border-tech-border">
+            <div class="w-12 h-12 rounded-xl bg-tech-red-light text-tech-red flex items-center justify-center text-xl shrink-0">
+              <i class="fa-solid fa-user-graduate"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-xs text-tech-dark uppercase">Lolos Standar Kampus</h4>
+              <p class="text-[11px] text-tech-muted">Format APA 7th & Metodologi</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-4 p-4 bg-tech-bg rounded-2xl border border-tech-border">
+            <div class="w-12 h-12 rounded-xl bg-tech-red-light text-tech-red flex items-center justify-center text-xl shrink-0">
+              <i class="fa-solid fa-piggy-bank"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-xs text-tech-dark uppercase">Investasi 5 Ribu</h4>
+              <p class="text-[11px] text-tech-muted">Nyelamatin nilai semestermu</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW SECTION: CARA PENGGUNAAN PROMPT (TUTORIAL & SIMULATION) -->
+    <section id="cara-pakai" class="py-16 sm:py-24 bg-white border-b border-tech-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <span class="text-xs font-bold text-tech-red uppercase tracking-widest">Panduan Praktis Pemula</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-tech-dark">Cara Menggunakan Prompt AI Ini</h2>
+          <p class="text-xs text-tech-muted">Hanya butuh 4 langkah mudah. Cocok untuk ChatGPT (GPT-4o), Claude 3.5, Gemini, & DeepSeek!</p>
+        </div>
+
+        <!-- Step-by-Step Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+          
+          <div class="bg-tech-bg p-6 rounded-3xl border border-tech-border space-y-3 relative group hover:border-tech-red transition">
+            <div class="w-10 h-10 rounded-xl bg-tech-dark text-white font-bold flex items-center justify-center text-sm">1</div>
+            <h3 class="font-bold text-sm text-tech-dark">Salin Teks Prompt</h3>
+            <p class="text-xs text-tech-muted leading-relaxed">
+              Buka prompt yang telah Anda beli di web ini atau dari pesan di email Gmail Anda, lalu klik tombol <strong class="text-tech-dark">Salin Prompt</strong>.
+            </p>
+          </div>
+
+          <div class="bg-tech-bg p-6 rounded-3xl border border-tech-border space-y-3 relative group hover:border-tech-red transition">
+            <div class="w-10 h-10 rounded-xl bg-tech-dark text-white font-bold flex items-center justify-center text-sm">2</div>
+            <h3 class="font-bold text-sm text-tech-dark">Buka Platform AI</h3>
+            <p class="text-xs text-tech-muted leading-relaxed">
+              Buka <strong class="text-tech-dark">ChatGPT</strong>, <strong class="text-tech-dark">Claude.ai</strong>, <strong class="text-tech-dark">Gemini</strong>, atau aplikasi AI akademik langganan Anda.
+            </p>
+          </div>
+
+          <div class="bg-tech-bg p-6 rounded-3xl border border-tech-border space-y-3 relative group hover:border-tech-red transition">
+            <div class="w-10 h-10 rounded-xl bg-tech-dark text-white font-bold flex items-center justify-center text-sm">3</div>
+            <h3 class="font-bold text-sm text-tech-dark">Ganti Variabel [ ]</h3>
+            <p class="text-xs text-tech-muted leading-relaxed">
+              Ubah kata di dalam kurung siku seperti <code class="bg-rose-100 text-tech-red px-1 rounded font-mono text-[10px]">[ISI TOPIK]</code> dengan topik tugas Anda secara spesifik.
+            </p>
+          </div>
+
+          <div class="bg-tech-bg p-6 rounded-3xl border border-tech-border space-y-3 relative group hover:border-tech-red transition">
+            <div class="w-10 h-10 rounded-xl bg-tech-dark text-white font-bold flex items-center justify-center text-sm">4</div>
+            <h3 class="font-bold text-sm text-tech-dark">Kirim & Terima Hasil</h3>
+            <p class="text-xs text-tech-muted leading-relaxed">
+              Tekan Enter! AI akan menyusun draf akademik yang rapi, mendalam, berstruktur standar kampus, dan bebas kesan bot.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Interactive Simulator Box -->
+        <div class="bg-gradient-to-r from-tech-dark to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-2xl">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-5 space-y-4">
+              <div class="inline-flex items-center space-x-2 px-3 py-1 bg-tech-red text-white text-[10px] font-bold uppercase rounded-full">
+                <i class="fa-solid fa-vial"></i>
+                <span>Simulasi Langsung</span>
+              </div>
+              <h3 class="font-display font-bold text-xl sm:text-2xl text-white leading-snug">Coba Isi Variabel Topik Tugasmu di Sini!</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Kunci utama prompt ini ada pada pengisian variabel yang presisi. Coba ketik topik tugasmu di bawah untuk melihat bagaimana prompt ini bekerja otomatis:
+              </p>
+
+              <div class="space-y-3">
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">Topik Tugas Anda:</label>
+                  <input type="text" id="demo-topic-input" oninput="updatePromptDemo()" placeholder="Contoh: Dampak AI Terhadap Efisiensi Belajar Mahasiswa"
+                         class="w-full px-4 py-2.5 bg-black/40 border border-white/20 rounded-xl text-xs text-white focus:border-tech-red outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">Jurusan / Program Studi:</label>
+                  <input type="text" id="demo-major-input" oninput="updatePromptDemo()" placeholder="Contoh: Ilmu Komunikasi"
+                         class="w-full px-4 py-2.5 bg-black/40 border border-white/20 rounded-xl text-xs text-white focus:border-tech-red outline-none">
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 bg-black/60 backdrop-blur-md p-6 rounded-2xl border border-white/10 space-y-3">
+              <div class="flex items-center justify-between border-b border-white/10 pb-2">
+                <span class="text-[10px] font-mono font-bold text-tech-red uppercase"><i class="fa-solid fa-code mr-1"></i> Preview Prompt Terisi Otomatis</span>
+                <span class="text-[10px] text-slate-400">Siap Copas ke ChatGPT</span>
+              </div>
+
+              <div id="demo-prompt-preview" class="font-mono text-[11px] text-slate-200 bg-slate-950 p-4 rounded-xl border border-white/10 max-h-52 overflow-y-auto leading-relaxed">
+                Saya ingin Anda bertindak sebagai mahasiswa jurusan <span class="text-amber-400 font-bold" id="demo-major-val">[ILMU KOMUNIKASI]</span> dengan kemampuan penulisan akademik yang baik. Buatkan makalah kuliah lengkap dalam Bahasa Indonesia mengenai topik <span class="text-amber-400 font-bold" id="demo-topic-val">[DAMPAK AI TERHADAP EFISIENSI BELAJAR MAHASISWA]</span> dengan gaya formal, jelas, dan analitis...
+              </div>
+
+              <!-- Pro Tips -->
+              <div class="pt-2 flex items-center space-x-2 text-[11px] text-slate-300">
+                <i class="fa-solid fa-lightbulb text-amber-400"></i>
+                <span><strong>Tips Rahasia:</strong> Untuk skripsi panjang, gunakan prompt per BAB secara bertahap agar AI tidak memotong penjelasan!</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAIN POINTS SECTION -->
+    <section class="py-16 sm:py-20 bg-white border-b border-tech-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <span class="text-xs font-bold text-tech-red uppercase tracking-widest">Pernah Mengalami Ini?</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-tech-dark">Penyebab Utama Tugas Akademik Ditolak Dosen</h2>
+          <p class="text-xs text-tech-muted">Gunakan AI secara cerdas, bukan asal-asalan prompt yang bikin hasil tulisanmu terdeteksi bot!</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-rose-50/50 p-8 rounded-3xl border border-rose-100 space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <h3 class="font-display font-bold text-base text-tech-dark">Hasil ChatGPT Terlalu Kaku</h3>
+            <p class="text-xs text-tech-muted leading-relaxed">
+              Prompt biasa menghasilkan kalimat yang terdengar generik, bertele-tele, dan mudah dikenali dosen sebagai hasil AI.
+            </p>
+          </div>
+
+          <div class="bg-rose-50/50 p-8 rounded-3xl border border-rose-100 space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-face-tired"></i>
+            </div>
+            <h3 class="font-display font-bold text-base text-tech-dark">Pusing Karena Revisi Berulang</h3>
+            <p class="text-xs text-tech-muted leading-relaxed">
+              Dospem minta tambah analisis kritis & data kontekstual Indonesia, tapi bingung bagaimana cara menyuruh AI dengan benar.
+            </p>
+          </div>
+
+          <div class="bg-rose-50/50 p-8 rounded-3xl border border-rose-100 space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-hourglass-half"></i>
+            </div>
+            <h3 class="font-display font-bold text-base text-tech-dark">Waktu Terbuang & Stres H-1</h3>
+            <p class="text-xs text-tech-muted leading-relaxed">
+              Ngetik sampai jam 3 pagi tapi hasilnya masih berantakan dan tidak sesuai standar penulisan makalah/skripsi resmi.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-14 bg-tech-dark text-white p-8 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="space-y-1 text-center md:text-left">
+            <h3 class="font-display font-extrabold text-lg text-white">Solusinya? Pakai Formula Prompt Pahlawan Tugas.</h3>
+            <p class="text-xs text-slate-400">Dirancang khusus sesuai standar akademik universitas di Indonesia. Cukup sekali klik!</p>
+          </div>
+          <a href="#katalog" class="px-8 py-3.5 bg-tech-red hover:bg-tech-red-dark text-white text-xs font-extrabold uppercase tracking-widest rounded-full transition shadow-lg shrink-0">
+            Dapatkan Prompt Sekarang
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="py-16 sm:py-20 bg-tech-bg border-b border-tech-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+          <span class="text-xs font-bold text-tech-red uppercase tracking-widest">Kisah Nyata Mahasiswa</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-tech-dark">Terselamatkan Saat H-1 Deadline</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-3xl border border-tech-border space-y-4 shadow-sm">
+            <div class="flex items-center space-x-1 text-amber-500 text-xs font-bold">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-xs text-slate-700 italic leading-relaxed">
+              "Jujur ini nyelamatin Bab 1-3 skripsi gue! Dospem biasanya killer dan minta revisi terus, tapi pas pake struktur prompt ini hasilnya analitis banget. Worth it parah 5rb!"
+            </p>
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-tech-dark">Rian P.</span>
+              <span class="text-tech-muted text-[11px]">Mahasiswa S1 Hukum</span>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-tech-border space-y-4 shadow-sm">
+            <div class="flex items-center space-x-1 text-amber-500 text-xs font-bold">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-xs text-slate-700 italic leading-relaxed">
+              "Makalah jam 2 pagi kelar dalam 15 menit. Bahasa Indonesianya gak kaku kayak prompt asal-asalan. Dosen ngasih nilai A, seneng banget sumpah."
+            </p>
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-tech-dark">Dhea A.</span>
+              <span class="text-tech-muted text-[11px]">Mahasiswi Manajemen</span>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-tech-border space-y-4 shadow-sm">
+            <div class="flex items-center space-x-1 text-amber-500 text-xs font-bold">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-xs text-slate-700 italic leading-relaxed">
+              "Prompt jurnal ilmiahnya gokil sih. Lengkap dari abstrak sampe referensi APA Style 7th. Murah banget cuma 5rb dibanding waktu begadang semalaman."
+            </p>
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-tech-dark">Bagas K.</span>
+              <span class="text-tech-muted text-[11px]">Mahasiswa Teknik</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KATALOG TRENDING PRODUCTS SECTION -->
+    <section id="katalog" class="py-16 sm:py-24 bg-tech-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex items-center justify-between mb-10">
+          <div>
+            <span class="text-xs font-bold text-tech-red uppercase tracking-widest">Trending Prompts</span>
+            <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-tech-dark mt-1">Katalog Prompt Pilihan</h2>
+          </div>
+          <span class="text-xs font-bold text-tech-muted">Total: <span id="prompt-count-label" class="text-tech-red">5 Module</span></span>
+        </div>
+
+        <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Dynamically Rendered via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ALUR CARA BELI SECTION -->
+    <section id="cara-beli" class="py-16 sm:py-24 bg-white border-t border-b border-tech-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+          <span class="text-xs font-bold text-tech-red uppercase tracking-widest">Cara Transaksi</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-tech-dark">3 Langkah Mudah Pembelian</h2>
+          <p class="text-xs text-tech-muted">Proses cepat tanpa perlu registrasi akun yang rumit.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-tech-bg p-8 rounded-3xl border border-tech-border relative space-y-4 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 rounded-2xl bg-tech-red text-white flex items-center justify-center font-bold text-lg">01</div>
+            <h3 class="font-display font-bold text-lg text-tech-dark">Transfer Pembayaran</h3>
+            <p class="text-xs text-tech-muted leading-relaxed">
+              Transfer nominal <strong class="text-tech-dark">Rp 5.000</strong> ke Bank BCA: <span class="font-mono font-bold text-tech-red">4373208046</span> a.n. Muhammad Istajib Munajat. Simpan foto struk transfer Anda.
+            </p>
+          </div>
+
+          <div class="bg-tech-bg p-8 rounded-3xl border border-tech-border relative space-y-4 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 rounded-2xl bg-tech-red text-white flex items-center justify-center font-bold text-lg">02</div>
+            <h3 class="font-display font-bold text-lg text-tech-dark">Direct Upload Struk</h3>
+            <p class="text-xs text-tech-muted leading-relaxed">
+              Unggah foto struk transfer pada form checkout di bawah, isi nama & email Gmail Anda, lalu klik <strong class="text-tech-dark">Kirim Pesanan ke WA Admin</strong>.
+            </p>
+          </div>
+
+          <div class="bg-tech-bg p-8 rounded-3xl border border-tech-border relative space-y-4 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 rounded-2xl bg-tech-red text-white flex items-center justify-center font-bold text-lg">03</div>
+            <h3 class="font-display font-bold text-lg text-tech-dark">Terima File di Gmail</h3>
+            <p class="text-xs text-tech-muted leading-relaxed">
+              Begitu pesanan diverifikasi oleh Admin, file prompt lengkap otomatis <strong class="text-tech-dark">terkirim langsung ke Gmail Anda</strong> dan terbuka di web!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHECKOUT ORDER FORM SECTION -->
+    <section id="order-section" class="py-16 sm:py-24 bg-tech-bg">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-br from-tech-red via-tech-red-dark to-rose-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8">
+          
+          <div class="text-center max-w-xl mx-auto space-y-2">
+            <span class="text-xs font-bold uppercase tracking-widest bg-white/20 px-3 py-1 rounded-full text-white">Form Checkout Pembelian</span>
+            <h2 class="font-display text-2xl sm:text-4xl font-extrabold">Isi Data & Upload Struk BCA</h2>
+            <p class="text-xs text-rose-100">Pastikan alamat email Gmail Anda diisi dengan benar untuk pengiriman file.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-5 bg-black/20 backdrop-blur-md p-6 rounded-2xl border border-white/20 space-y-4">
+              <h3 class="font-bold text-sm uppercase tracking-wider border-b border-white/10 pb-3">Informasi Rekening Tujuan</h3>
+
+              <div class="space-y-3 text-xs">
+                <div>
+                  <span class="text-rose-200 block text-[10px] uppercase font-bold">Bank Pembayaran</span>
+                  <span class="font-bold text-white text-sm">BCA (Bank Central Asia)</span>
+                </div>
+
+                <div>
+                  <span class="text-rose-200 block text-[10px] uppercase font-bold">Nomor Rekening</span>
+                  <div class="flex items-center space-x-2">
+                    <span class="font-mono font-bold text-white text-base" id="no-rek-text">4373208046</span>
+                    <button onclick="copyRekening()" class="text-xs bg-white/20 hover:bg-white text-tech-dark hover:text-tech-red px-2 py-1 rounded transition" title="Salin Rekening">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="text-rose-200 block text-[10px] uppercase font-bold">Atas Nama Rekening</span>
+                  <span class="font-bold text-white">Muhammad Istajib Munajat</span>
+                </div>
+
+                <div class="pt-2">
+                  <div class="bg-white/10 p-3 rounded-xl border border-white/20 text-center">
+                    <span class="text-xs font-extrabold text-white">Total Harga: Rp 5.000 / Prompt</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 bg-white text-tech-dark p-6 sm:p-8 rounded-2xl shadow-xl space-y-4">
+              <div class="bg-tech-red-light/50 border border-tech-red/20 p-3.5 rounded-xl text-xs text-tech-red-dark font-medium flex items-center space-x-2.5">
+                <i class="fa-solid fa-shield-heart text-base shrink-0"></i>
+                <span>Tidur nyenyak malam ini. Cukup 5rb untuk hasil tugas sempurna!</span>
+              </div>
+
+              <form id="checkout-form" onsubmit="event.preventDefault(); submitCheckout();" class="space-y-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider mb-1">Nama Lengkap Pembeli <span class="text-tech-red">*</span></label>
+                  <input type="text" id="buyer-name" required placeholder="Contoh: Rian Pratama"
+                         class="w-full px-4 py-3 bg-tech-bg border border-tech-border rounded-xl text-xs focus:border-tech-red outline-none transition font-medium">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider mb-1">Alamat Gmail Anda <span class="text-tech-red">*</span></label>
+                  <input type="email" id="buyer-email" required placeholder="nama.anda@gmail.com"
+                         class="w-full px-4 py-3 bg-tech-bg border border-tech-border rounded-xl text-xs focus:border-tech-red outline-none transition font-medium">
+                  <p class="text-[10px] text-tech-muted mt-1">File prompt lengkap akan dikirim otomatis ke email ini.</p>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider mb-1">Pilih Module Prompt <span class="text-tech-red">*</span></label>
+                  <select id="buyer-product-select" required
+                          class="w-full px-4 py-3 bg-tech-bg border border-tech-border rounded-xl text-xs focus:border-tech-red outline-none transition font-bold">
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider mb-1">Upload Foto Struk Transfer BCA <span class="text-tech-red">*</span></label>
+                  <input type="file" id="buyer-receipt-file" accept="image/*" required onchange="handleReceiptPreview(event)"
+                         class="w-full text-xs text-tech-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-tech-dark file:text-white hover:file:bg-tech-red cursor-pointer border border-tech-border bg-tech-bg rounded-xl">
+                  
+                  <div id="receipt-preview-box" class="mt-3 hidden">
+                    <span class="text-[10px] font-bold text-tech-muted block mb-1">Pratinjau Struk:</span>
+                    <img id="receipt-preview-img" src="" alt="Struk Transfer" class="h-28 w-auto object-contain border border-tech-border p-1 bg-tech-bg rounded-xl">
+                  </div>
+                </div>
+
+                <div class="pt-2">
+                  <button type="submit" class="w-full py-4 bg-tech-red hover:bg-tech-red-dark text-white font-extrabold text-xs uppercase tracking-widest rounded-xl transition shadow-lg shadow-tech-red/30 flex items-center justify-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Kirim Pesanan ke WA Admin</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-tech-dark text-slate-400 text-xs py-12 border-t border-slate-800 mt-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 rounded-lg bg-tech-red text-white flex items-center justify-center font-bold text-xs">
+            <i class="fa-solid fa-atom"></i>
+          </div>
+          <div>
+            <span class="font-display font-bold text-base text-white">Pahlawan Tugas</span>
+            <span class="block text-[10px] text-slate-500">© 2026 Pahlawan Tugas. TechVerse Academic Prompt Store.</span>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-6">
+          <a href="#katalog" class="hover:text-white transition">Katalog Prompt</a>
+          <a href="#cara-pakai" class="hover:text-white transition">Cara Pakai</a>
+          <a href="#cara-beli" class="hover:text-white transition">Cara Transaksi</a>
+          <a href="#order-section" class="hover:text-white transition">Form Pembelian</a>
+          
+          <button onclick="triggerAdminEntrance()" class="text-slate-600 hover:text-slate-400 transition" title="System Security">
+            <i class="fa-solid fa-lock text-[11px]"></i>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+
+  <!-- ================= VIEW 2: DEDICATED ADMIN CONTROL PORTAL VIEW ================= -->
+  <div id="admin-view" class="hidden min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    
+    <header class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 bg-tech-red text-white rounded-xl flex items-center justify-center font-bold text-lg">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div>
+          <h1 class="font-display font-bold text-base text-white">Pahlawan Tugas - Control Portal</h1>
+          <span class="block text-[10px] text-tech-red font-mono uppercase font-semibold">Dedicated Management Mode</span>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <button onclick="openWebhookModal()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-tech-red border border-tech-red/30 text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center space-x-2">
+          <i class="fa-solid fa-gears"></i>
+          <span>Webhook Email URL</span>
+        </button>
+
+        <button onclick="openAddProductModal()" class="px-3.5 py-2 bg-tech-red hover:bg-tech-red-dark text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center space-x-2">
+          <i class="fa-solid fa-plus"></i>
+          <span>Tambah Prompt Baru</span>
+        </button>
+
+        <button onclick="exitAdminView()" class="px-4 py-2 bg-slate-800 hover:bg-red-900/50 text-red-400 border border-red-500/30 text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center space-x-1.5">
+          <i class="fa-solid fa-power-off"></i>
+          <span>Keluar Portal Admin</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto p-6 sm:p-8 space-y-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+          <span class="text-xs font-bold text-slate-400 uppercase">Total Pesanan Masuk</span>
+          <div class="flex items-center justify-between">
+            <span id="stat-total-orders" class="font-display font-extrabold text-3xl text-white">0</span>
+            <i class="fa-solid fa-cart-shopping text-tech-red text-2xl"></i>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+          <span class="text-xs font-bold text-slate-400 uppercase">Pesanan Terverifikasi</span>
+          <div class="flex items-center justify-between">
+            <span id="stat-verified-orders" class="font-display font-extrabold text-3xl text-emerald-400">0</span>
+            <i class="fa-solid fa-circle-check text-emerald-400 text-2xl"></i>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-2">
+          <span class="text-xs font-bold text-slate-400 uppercase">Total Prompt Katalog</span>
+          <div class="flex items-center justify-between">
+            <span id="stat-total-products" class="font-display font-extrabold text-3xl text-tech-red">5</span>
+            <i class="fa-solid fa-layer-group text-tech-red text-2xl"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-8 space-y-6">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="font-display text-lg font-bold text-white flex items-center space-x-2">
+              <i class="fa-solid fa-list-check text-tech-red"></i>
+              <span>Daftar Transaksi Pembeli & Pengiriman Gmail</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Tinjau foto bukti transfer pembeli dan kirimkan file prompt ke alamat Gmail mereka.</p>
+          </div>
+        </div>
+
+        <div id="admin-orders-list" class="space-y-4"></div>
+      </div>
+
+      <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-8 space-y-6">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="font-display text-lg font-bold text-white flex items-center space-x-2">
+              <i class="fa-solid fa-boxes-stacked text-tech-red"></i>
+              <span>Manajemen Produk Prompt Katalog</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Tambah, edit, atau hapus modul prompt AI yang tampil di toko.</p>
+          </div>
+        </div>
+
+        <div id="admin-products-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </div>
+
+    </main>
+  </div>
+
+
+  <!-- MODALS & TOAST -->
+
+  <!-- Modal Login Admin PIN -->
+  <div id="modal-login-admin" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 rounded-3xl max-w-sm w-full p-8 border border-slate-800 text-white space-y-6 shadow-2xl relative">
+      <button onclick="closeAdminLoginModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="text-center space-y-2">
+        <div class="w-14 h-14 bg-tech-red/20 text-tech-red rounded-2xl flex items-center justify-center mx-auto text-2xl border border-tech-red/30">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3 class="font-display text-xl font-bold">Portal Keamanan Admin</h3>
+        <p class="text-xs text-slate-400">Masukkan PIN khusus untuk membuka Halaman Admin Terpisah.</p>
+      </div>
+
+      <form onsubmit="event.preventDefault(); submitAdminLogin();" class="space-y-4">
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider mb-2 text-slate-400">PIN Keamanan Admin</label>
+          <input type="password" id="admin-pin-input" placeholder="••••" required
+                 class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-center text-2xl font-bold font-mono tracking-widest text-tech-red focus:border-tech-red outline-none">
+        </div>
+
+        <button type="submit" class="w-full py-4 bg-tech-red hover:bg-tech-red-dark text-white text-xs font-bold uppercase tracking-widest rounded-xl transition shadow-lg shadow-tech-red/30">
+          Masuk Portal Admin
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Webhook Settings -->
+  <div id="modal-webhook-settings" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 rounded-3xl max-w-lg w-full p-8 border border-slate-800 text-white space-y-6 shadow-2xl relative">
+      <button onclick="closeWebhookModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="flex items-center space-x-3 border-b border-slate-800 pb-4">
+        <div class="w-10 h-10 bg-tech-red/20 text-tech-red rounded-xl flex items-center justify-center text-lg">
+          <i class="fa-solid fa-gears"></i>
+        </div>
+        <div>
+          <h3 class="font-display text-base font-bold text-white">Integrasi Webhook Google Apps Script</h3>
+          <p class="text-xs text-slate-400">Pengiriman Email Automator ke Gmail Pembeli</p>
+        </div>
+      </div>
+
+      <form onsubmit="event.preventDefault(); saveWebhookSettings();" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider mb-1 text-tech-red">URL Web App Exec Google Script</label>
+          <input type="url" id="webhook-url-input" placeholder="https://script.google.com/macros/s/AKfycb.../exec" required
+                 class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-xs font-mono focus:border-tech-red outline-none text-white">
+          <p class="text-[10px] text-slate-400 mt-1">Masukkan Web App Exec URL yang dideploy dengan akses "Siapa saja".</p>
+        </div>
+
+        <div class="flex items-center justify-end space-x-3 pt-2">
+          <button type="button" onclick="closeWebhookModal()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-xs font-bold uppercase tracking-wider rounded-xl">
+            Batal
+          </button>
+          <button type="submit" class="px-6 py-2.5 bg-tech-red hover:bg-tech-red-dark text-white text-xs font-bold uppercase tracking-wider rounded-xl">
+            Simpan URL Webhook
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Preview Struk Transfer -->
+  <div id="modal-preview-struk" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 rounded-3xl max-w-md w-full p-6 border border-slate-800 text-white space-y-4 shadow-2xl relative">
+      <button onclick="closeStrukModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <h3 class="font-display text-base font-bold border-b border-slate-800 pb-3 flex items-center space-x-2">
+        <i class="fa-solid fa-receipt text-tech-red"></i>
+        <span>Pratinjau Foto Struk Transfer</span>
+      </h3>
+
+      <div class="bg-slate-950 p-2 border border-slate-800 rounded-2xl flex items-center justify-center max-h-96 overflow-auto">
+        <img id="modal-struk-img" src="" alt="Struk Transfer" class="max-w-full h-auto object-contain rounded-xl">
+      </div>
+
+      <div class="text-center pt-2">
+        <button onclick="closeStrukModal()" class="px-6 py-2 bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl">
+          Tutup Pratinjau
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Add/Edit Product -->
+  <div id="modal-product-crud" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 rounded-3xl max-w-xl w-full p-8 border border-slate-800 text-white space-y-5 shadow-2xl relative">
+      <button onclick="closeProductCrudModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <h3 id="crud-modal-title" class="font-display text-lg font-bold border-b border-slate-800 pb-3 text-white">Tambah Prompt Baru (Admin)</h3>
+
+      <form onsubmit="event.preventDefault(); saveProductCrud();" class="space-y-4">
+        <input type="hidden" id="crud-product-id">
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1 text-slate-400">Judul Prompt</label>
+            <input type="text" id="crud-title" required placeholder="Contoh: Prompt Analisis Data"
+                   class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs focus:border-tech-red outline-none text-white">
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider mb-1 text-slate-400">Kategori</label>
+            <select id="crud-category" required class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs focus:border-tech-red outline-none text-white">
+              <option value="makalah">Makalah</option>
+              <option value="skripsi">Skripsi</option>
+              <option value="jurnal">Jurnal Ilmiah</option>
+              <option value="artikel">Artikel</option>
+              <option value="presentasi">Presentasi</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1 text-slate-400">Deskripsi Singkat</label>
+          <input type="text" id="crud-desc" required placeholder="Uraian peruntukan prompt..."
+                 class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs focus:border-tech-red outline-none text-white">
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider mb-1 text-slate-400">Isi Teks Prompt Lengkap</label>
+          <textarea id="crud-content" rows="8" required placeholder="Tempelkan instruksi prompt di sini..."
+                    class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 font-mono text-xs focus:border-tech-red outline-none text-slate-200 rounded-xl"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end space-x-3 pt-2">
+          <button type="button" onclick="closeProductCrudModal()" class="px-4 py-2 bg-slate-800 text-slate-300 text-xs font-bold uppercase tracking-wider rounded-xl">
+            Batal
+          </button>
+          <button type="submit" class="px-6 py-2 bg-tech-red hover:bg-tech-red-dark text-white text-xs font-bold uppercase tracking-wider rounded-xl">
+            Simpan Produk
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-4 border-l-4 border-tech-red rounded-2xl shadow-2xl flex items-center space-x-3 text-xs">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-tech-red text-base"></i>
+    <span id="toast-message" class="font-medium">Notifikasi sistem</span>
+  </div>
+
+
+  <!-- ================= JAVASCRIPT APPLICATION LOGIC ================= -->
+  <script>
+    const ADMIN_PIN = "1234";
+    const WA_NUMBER = "6285891099122";
+    let isAdminLoggedIn = false;
+    let currentCategoryFilter = "all";
+    let receiptBase64Data = "";
+    
+    // =========================================================================
+    // TEMPELKAN URL GOOGLE APPS SCRIPT ANDA DI DALAM TANDA PETIK DI BAWAH INI:
+    // Contoh: "https://script.google.com/macros/s/AKfycbx.../exec"
+    // =========================================================================
+    let webhookUrl = localStorage.getItem('pt_webhook_url') || "https://script.google.com/macros/s/AKfycbwf4XkgzzHZHm_Rqa55M6W7jW4wXN6gkGCF1lYeMw9BGqppeg2WUbNUFUz7rmYKgy1J/exec";
+
+    let products = [
+      {
+        id: "p-makalah",
+        category: "makalah",
+        title: "Prompt Makalah Akademik",
+        rating: "4.9 (128 Reviews)",
+        desc: "Instruksi bertindak sebagai mahasiswa untuk membuat makalah kuliah lengkap 1.200-2.000 kata berstruktur rapi.",
+        content: `Saya ingin Anda bertindak sebagai mahasiswa dengan kemampuan penulisan akademik yang baik. Buatkan makalah kuliah lengkap dalam Bahasa Indonesia dengan gaya formal, jelas, mudah dipahami, dan tetap natural seperti tulisan manusia.
+
+Topik makalah: [ISI TOPIK]
+Fokus pembahasan (opsional): [ISI AGAR LEBIH SPESIFIK]
+
+Makalah harus disusun secara sistematis, logis, dan saling terhubung antarbagian. Gunakan pendekatan yang analitis, bukan hanya deskriptif, serta sertakan insight atau sudut pandang kritis yang relevan.
+
+Struktur makalah meliputi cover (judul, nama, NIM, mata kuliah, dosen, universitas, dan tahun), kata pengantar sekitar 150 kata, daftar isi, BAB I Pendahuluan, BAB II Pembahasan, BAB III Penutup, dan daftar pustaka.
+
+Pada BAB I, tuliskan latar belakang dalam 3-4 paragraf, rumusan masalah dalam 3-4 pertanyaan, serta tujuan penulisan. Pada BAB II, jelaskan teori secara ringkas, kemudian lanjutkan dengan analisis dan pembahasan utama. Sertakan contoh atau studi kasus, dengan prioritas pada konteks Indonesia. Tambahkan satu tabel ringkasan atau perbandingan serta satu data sederhana yang dapat divisualisasikan dalam bentuk grafik. Pastikan pembahasan memberikan insight, bukan sekadar uraian teori.
+
+Pada BAB III, tuliskan kesimpulan yang merangkum pembahasan secara komprehensif serta saran yang relevan dan aplikatif.
+
+Gunakan referensi yang kredibel, seperti jurnal, buku, atau artikel ilmiah, minimal 5 sumber, dengan prioritas terbit dalam 5-10 tahun terakhir. Gunakan sitasi ringan dalam format (Nama, Tahun) dan tuliskan daftar pustaka secara konsisten.
+
+Panjang makalah sekitar 1.200-2.000 kata. Gunakan bahasa akademik yang tidak terlalu kaku, paragraf yang proporsional, dan alur pembahasan yang jelas. Pastikan hasil akhir rapi, terstruktur, enak dibaca, serta terlihat seperti tulisan mahasiswa, bukan teks yang dihasilkan AI.`
+      },
+      {
+        id: "p-skripsi",
+        category: "skripsi",
+        title: "Prompt Skripsi Lengkap BAB I - V",
+        rating: "5.0 (310 Reviews)",
+        desc: "Instruksi komprehensif penulisan skripsi 70-80 halaman (20.000-25.000 kata) standar Times New Roman & APA 7th.",
+        content: `Saya adalah mahasiswa jurusan [ISI JURUSAN] yang sedang menyusun skripsi dengan judul "[ISI JUDUL SKRIPSI]". Penelitian ini berfokus pada [ISI TOPIK SPESIFIK] dengan pendekatan [Kualitatif/Kuantitatif/Mix], dan jika relevan, dilakukan di [ISI LOKASI/OBJEK PENELITIAN] dengan melibatkan [ISI TARGET RESPONDEN/SUMBER DATA].
+
+Tolong susunkan skripsi lengkap dari BAB I hingga BAB V dalam satu output yang terstruktur, konsisten, dan saling terhubung. Panjang keseluruhan ditargetkan sekitar 70-80 halaman atau 20.000-25.000 kata, dengan proporsi yang seimbang pada setiap bab: BAB I (10-12 halaman), BAB II (20-25 halaman), BAB III (10-12 halaman), BAB IV (20-25 halaman), dan BAB V (5-8 halaman). Hindari pengulangan, filler, atau pembahasan yang terlalu umum.
+
+Gunakan bahasa akademik yang formal, jelas, argumentatif, dan tetap natural seperti tulisan mahasiswa. Pastikan pembahasan bersifat analitis dan kritis, bukan sekadar deskriptif, serta memiliki alur yang logis antar paragraf maupun antar bab.
+
+Format penulisan mengikuti standar akademik: Times New Roman 12 pt, spasi 1,5, margin kiri 4 cm, kanan 3 cm, atas 3 cm, bawah 3 cm, teks rata kanan-kiri, dan indentasi paragraf 1,25 cm. Gunakan penomoran bab dan subbab yang rapi, seperti 1.1, 1.2, dan seterusnya.
+
+Sertakan tabel, grafik, dan gambar jika relevan untuk mendukung analisis, menampilkan data, perbandingan, atau tren. Setiap visual harus diberi nomor, judul, dan dijelaskan dalam pembahasan.
+
+Gunakan referensi ilmiah dengan format APA Style edisi ke-7, minimal 10-15 sumber, terutama dari jurnal atau publikasi 5-10 tahun terakhir. Semua referensi harus disitasi dalam teks dengan parafrase yang baik.
+
+Jelaskan research gap secara eksplisit, dukung latar belakang dengan data dan fakta, serta bandingkan penelitian terdahulu secara kritis. Kaitkan teori dengan hasil penelitian, dan pastikan konsistensi antara rumusan masalah, tujuan penelitian, hasil, dan kesimpulan.
+
+Jika data tidak tersedia, gunakan simulasi yang realistis dan relevan dengan konteks Indonesia. Pastikan temuan yang disajikan logis, mendalam, dan tidak generik. Jika ada bagian yang masih lemah, tambahkan catatan perbaikan seperti masukan dosen pembimbing.
+
+Struktur wajib meliputi: BAB I Pendahuluan, BAB II Tinjauan Pustaka, BAB III Metodologi Penelitian, BAB IV Hasil dan Pembahasan, serta BAB V Kesimpulan dan Saran. Tulis seluruh skripsi secara lengkap dalam satu output dengan heading yang jelas dan format yang rapi.`
+      },
+      {
+        id: "p-jurnal",
+        category: "jurnal",
+        title: "Prompt Jurnal Ilmiah Ready Publish",
+        rating: "4.9 (95 Reviews)",
+        desc: "Instruksi membuat artikel jurnal ilmiah 4.000-6.000 kata berstandar publikasi dengan penekanan pada Novelty.",
+        content: `Saya adalah mahasiswa/peneliti di bidang [ISI BIDANG/JURUSAN]. Tolong bantu saya menulis artikel jurnal ilmiah yang siap dipublikasikan dengan judul "[ISI JUDUL JURNAL]".
+
+Penelitian ini berfokus pada [ISI TOPIK] dengan tujuan [ISI TUJUAN]. Gunakan pendekatan [Kualitatif/Kuantitatif/Mix], dengan data dari [ISI SUMBER DATA]. Jika data belum tersedia, gunakan simulasi yang realistis dan relevan. Lokasi penelitian: [ISI LOKASI], jika ada.
+
+Tulis artikel sepanjang 4.000-6.000 kata (sekitar 5-10 halaman) dengan bahasa akademik yang formal, jelas, ringkas, dan argumentatif. Fokus pada analisis, kontribusi, dan novelty penelitian. Hindari uraian yang terlalu umum, bertele-tele, atau terkesan seperti teks AI.
+
+Struktur artikel meliputi: judul (maksimal 15 kata), abstrak 150-250 kata, 3-5 kata kunci, pendahuluan, tinjauan pustaka, metodologi, hasil dan pembahasan, kesimpulan, serta referensi.
+
+Pada pendahuluan, jelaskan latar belakang, research gap secara eksplisit, urgensi, dan tujuan penelitian. Tinjauan pustaka harus memuat teori utama, analisis kritis penelitian terdahulu, serta menunjukkan posisi dan gap penelitian ini. Metodologi menjelaskan jenis penelitian, sumber data, teknik pengumpulan data, dan analisis secara singkat namun jelas.
+
+Bagian hasil dan pembahasan harus menjadi fokus utama: sajikan data secara sistematis, lakukan analisis mendalam, bandingkan dengan teori dan penelitian sebelumnya, serta jelaskan insight, implikasi, dan kontribusi penelitian. Tegaskan dengan jelas kebaruan (novelty) penelitian ini.
+
+Kesimpulan harus menjawab tujuan penelitian secara ringkas dan langsung. Gunakan referensi APA Style edisi ke-7 dengan minimal 10-20 sumber ilmiah, terutama dari jurnal 5-10 tahun terakhir.
+
+Sertakan tabel, grafik, atau chart jika relevan untuk menampilkan data, tren, atau perbandingan. Setiap visual harus diberi nomor, judul, dan dijelaskan dalam pembahasan.
+
+Gunakan konteks Indonesia jika relevan, sertakan contoh nyata bila memungkinkan, dan pastikan artikel memiliki alur yang logis, konsisten, serta terasa seperti jurnal ilmiah asli yang siap dipublikasikan.`
+      },
+      {
+        id: "p-artikel",
+        category: "artikel",
+        title: "Prompt Artikel Akademik Tugas Kuliah",
+        rating: "4.8 (142 Reviews)",
+        desc: "Instruksi penyusunan artikel akademik 1.500-3.000 kata terstruktur dan analitis untuk tugas perkuliahan.",
+        content: `Saya adalah mahasiswa di bidang [ISI JURUSAN/PROGRAM STUDI]. Tolong bantu saya menulis artikel akademik untuk tugas kuliah dengan judul "[ISI JUDUL ARTIKEL]".
+
+Topik utama artikel ini adalah [ISI TOPIK], dengan fokus pembahasan pada [ISI FOKUS/SPESIFIKASI], jika ada. Artikel ditulis dalam Bahasa Indonesia menggunakan gaya akademik yang formal, jelas, dan mudah dipahami, tetapi tetap natural seperti tulisan mahasiswa.
+
+Panjang artikel sekitar 1.500-3.000 kata. Tulisan harus ringkas, terstruktur, dan analitis, bukan sekadar deskriptif. Hindari kalimat yang terlalu umum, bertele-tele, atau terdengar seperti hasil AI. Pastikan setiap bagian saling terhubung dengan alur yang logis.
+
+Struktur artikel meliputi: judul, pendahuluan, pembahasan, penutup, dan daftar pustaka. Pada bagian pendahuluan, jelaskan latar belakang, urgensi topik, serta tujuan penulisan. Pada bagian pembahasan, uraikan teori atau konsep utama secara singkat, lalu lanjutkan dengan analisis mendalam. Sertakan contoh, studi kasus, atau penerapan nyata, dengan prioritas pada konteks Indonesia jika relevan.
+
+Bagian penutup harus berisi kesimpulan yang merangkum poin-poin utama secara jelas dan singkat. Jika diperlukan, tambahkan saran atau implikasi praktis.
+
+Gunakan minimal 5-10 referensi yang kredibel, seperti jurnal, buku, atau artikel ilmiah, terutama yang terbit dalam 5-10 tahun terakhir. Gunakan sitasi dalam teks dengan format sederhana, seperti (Nama, Tahun), dan susun daftar pustaka secara konsisten.
+
+Jika relevan, sertakan tabel, grafik, atau ilustrasi untuk memperkuat analisis. Setiap visual harus diberi nomor, judul, dan dijelaskan dalam pembahasan.
+
+Pastikan hasil akhir rapi, terstruktur, argumentatif, dan terlihat seperti artikel akademik yang ditulis oleh mahasiswa, bukan template atau teks yang dihasilkan AI. Mulai sekarang dan hasilkan artikel lengkap sesuai instruksi di atas.`
+      },
+      {
+        id: "p-presentasi",
+        category: "presentasi",
+        title: "Prompt Slide Presentasi & Speaker Notes",
+        rating: "4.9 (180 Reviews)",
+        desc: "Instruksi penyusunan materi slide presentasi 10-15 slide lengkap dengan poin utama dan catatan pembicara.",
+        content: `Bertindaklah sebagai seorang mahasiswa yang mampu menyusun materi presentasi akademik yang jelas, menarik, dan profesional. Buatkan isi slide presentasi kuliah dalam Bahasa Indonesia berdasarkan topik berikut:
+
+Topik Presentasi: [ISI TOPIK]
+Judul Presentasi: [ISI JUDUL]
+Mata Kuliah: [ISI MATA KULIAH]
+Dosen: [ISI NAMA DOSEN]
+Nama: [ISI NAMA]
+NIM: [ISI NIM]
+
+Susun presentasi dalam format yang ringkas, sistematis, dan mudah dipahami. Gunakan bahasa formal namun tetap natural seperti presentasi mahasiswa. Fokus pada poin-poin utama, bukan paragraf panjang. Setiap slide harus memiliki isi yang padat, informatif, dan relevan.
+
+Jumlah slide ideal adalah 10-15 slide, dengan struktur sebagai berikut:
+1. Slide Judul
+2. Latar Belakang
+3. Rumusan Masalah / Tujuan
+4. Landasan Teori
+5. Pembahasan Utama (2-4 slide)
+6. Studi Kasus / Contoh Penerapan
+7. Analisis atau Insight
+8. Kesimpulan
+9. Daftar Pustaka
+10. Slide Penutup / Tanya Jawab
+
+Untuk setiap slide, sertakan:
+- Judul slide
+- Poin-poin utama (maksimal 4-6 bullet per slide)
+- Catatan singkat presenter (speaker notes) untuk membantu penjelasan lisan
+
+Jika relevan, tambahkan rekomendasi visual seperti tabel, grafik, diagram, atau ilustrasi yang mendukung pemahaman audiens. Jelaskan pada slide mana visual tersebut sebaiknya ditempatkan.
+
+Gunakan referensi yang kredibel, seperti jurnal, buku, atau artikel ilmiah terbaru, terutama dari 5-10 tahun terakhir. Cantumkan sumber secara ringkas pada slide daftar pustaka.
+
+Pastikan alur presentasi logis, menarik, dan mudah diikuti. Hasil akhir harus terlihat seperti materi presentasi kuliah yang profesional, siap langsung dipindahkan ke PowerPoint atau Google Slides.`
+      }
+    ];
+
+    let orders = JSON.parse(localStorage.getItem('pt_orders') || '[]');
+    let unlockedProductIds = JSON.parse(localStorage.getItem('pt_unlocked') || '[]');
+
+    window.onload = function() {
+      if (window.location.hash === '#admin') {
+        openAdminLoginModal();
+      }
+
+      populateProductDropdown();
+      renderProducts();
+      setupKeyboardShortcuts();
+      updatePromptDemo();
+    };
+
+    function setupKeyboardShortcuts() {
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+          e.preventDefault();
+          triggerAdminEntrance();
+        }
+      });
+    }
+
+    // Demo Interactive Simulator Logic
+    function updatePromptDemo() {
+      const topicInput = document.getElementById('demo-topic-input').value.trim();
+      const majorInput = document.getElementById('demo-major-input').value.trim();
+
+      const topicVal = topicInput ? topicInput.toUpperCase() : "DAMPAK AI TERHADAP EFISIENSI BELAJAR MAHASISWA";
+      const majorVal = majorInput ? majorInput.toUpperCase() : "ILMU KOMUNIKASI";
+
+      document.getElementById('demo-topic-val').innerText = `[${topicVal}]`;
+      document.getElementById('demo-major-val').innerText = `[${majorVal}]`;
+    }
+
+    function renderProducts(query = "") {
+      const container = document.getElementById('products-grid');
+      container.innerHTML = "";
+
+      let filtered = currentCategoryFilter === 'all' 
+        ? products 
+        : products.filter(p => p.category === currentCategoryFilter);
+
+      if (query.trim() !== "") {
+        filtered = filtered.filter(p => p.title.toLowerCase().includes(query.toLowerCase()) || p.desc.toLowerCase().includes(query.toLowerCase()));
+      }
+
+      document.getElementById('prompt-count-label').innerText = `${filtered.length} Module`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="col-span-full text-center py-12 text-tech-muted text-xs">Belum ada prompt pada kategori ini.</div>`;
+        return;
+      }
+
+      filtered.forEach(p => {
+        const isUnlocked = unlockedProductIds.includes(p.id) || isAdminLoggedIn;
+
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-3xl p-6 border border-tech-border shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group hover:-translate-y-1";
+        
+        card.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[9px] font-extrabold uppercase tracking-widest px-3 py-1 bg-tech-red-light text-tech-red rounded-full">
+                ${p.category.toUpperCase()}
+              </span>
+              <div class="flex items-center space-x-1 text-xs text-amber-500 font-bold">
+                <i class="fa-solid fa-star"></i>
+                <span class="text-tech-dark text-[11px]">${p.rating || '4.9'}</span>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="font-display font-bold text-lg text-tech-dark group-hover:text-tech-red transition leading-snug">${p.title}</h3>
+              <p class="text-xs text-tech-muted mt-1 leading-relaxed">${p.desc}</p>
+            </div>
+
+            <div class="relative bg-slate-900 border border-slate-800 p-4 rounded-2xl text-[11px] font-mono text-tech-dark overflow-hidden">
+              ${!isUnlocked ? `
+                <div class="blurred-content max-h-32 overflow-hidden leading-relaxed text-slate-300 select-none">
+                  ${p.content.substring(0, 320)}...
+                </div>
+                <div class="absolute inset-0 bg-slate-950/65 backdrop-blur-[2px] flex flex-col items-center justify-center text-white p-4 text-center space-y-2">
+                  <i class="fa-solid fa-lock text-tech-red text-2xl drop-shadow-md"></i>
+                  <p class="text-xs font-sans font-bold tracking-wide">Teks Prompt Terkunci</p>
+                  <a href="#order-section" onclick="selectProductForOrder('${p.id}')" class="px-5 py-2 bg-tech-red hover:bg-tech-red-dark text-white text-[11px] font-sans font-extrabold uppercase tracking-wider rounded-full transition shadow-lg shadow-tech-red/40 hover:scale-105 transform">
+                    BELI RP 5.000
+                  </a>
+                </div>
+              ` : `
+                <pre class="whitespace-pre-wrap max-h-48 overflow-y-auto leading-relaxed text-slate-700">${escapeHtml(p.content)}</pre>
+              `}
+            </div>
+          </div>
+
+          <div class="pt-6 mt-4 border-t border-tech-border flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-tech-muted block font-bold uppercase">Harga Module</span>
+              <span class="font-display font-extrabold text-lg text-tech-dark">Rp 5.000</span>
+            </div>
+
+            <div>
+              ${isUnlocked ? `
+                <button onclick="copyPromptText('${p.id}')" class="px-5 py-2.5 bg-tech-dark hover:bg-black text-white text-xs font-bold uppercase tracking-wider rounded-full transition flex items-center space-x-1.5 shadow-md">
+                  <i class="fa-regular fa-copy"></i>
+                  <span>Salin Prompt</span>
+                </button>
+              ` : `
+                <a href="#order-section" onclick="selectProductForOrder('${p.id}')" class="px-5 py-2.5 bg-tech-red hover:bg-tech-red-dark text-white text-xs font-extrabold uppercase tracking-wider rounded-full transition shadow-md shadow-tech-red/20">
+                  Beli Prompt
+                </a>
+              `}
+            </div>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function filterCategory(cat, btnElem) {
+      currentCategoryFilter = cat;
+      const pills = document.querySelectorAll('.cat-pill');
+      pills.forEach(p => {
+        p.className = "cat-pill px-4 py-1.5 bg-tech-bg hover:bg-tech-red-light hover:text-tech-red text-tech-dark border border-tech-border rounded-full transition";
+      });
+      btnElem.className = "cat-pill active px-4 py-1.5 bg-tech-red text-white rounded-full transition shadow-sm";
+      renderProducts();
+    }
+
+    function searchPrompts() {
+      const q = document.getElementById('search-input').value;
+      renderProducts(q);
+    }
+
+    function populateProductDropdown() {
+      const select = document.getElementById('buyer-product-select');
+      select.innerHTML = "";
+      products.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = `${p.title} - Rp 5.000`;
+        select.appendChild(opt);
+      });
+    }
+
+    function handleReceiptPreview(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        receiptBase64Data = evt.target.result;
+        document.getElementById('receipt-preview-img').src = receiptBase64Data;
+        document.getElementById('receipt-preview-box').classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function submitCheckout() {
+      const name = document.getElementById('buyer-name').value.trim();
+      const email = document.getElementById('buyer-email').value.trim();
+      const productId = document.getElementById('buyer-product-select').value;
+      const product = products.find(p => p.id === productId);
+
+      if (!name || !email || !receiptBase64Data) {
+        showToast("Harap isi semua kolom formulir dan upload foto bukti transfer!");
+        return;
+      }
+
+      const newOrder = {
+        id: "ORD-" + Date.now(),
+        name: name,
+        email: email,
+        productId: productId,
+        productTitle: product ? product.title : "Prompt AI",
+        receiptBase64: receiptBase64Data,
+        timestamp: new Date().toLocaleString('id-ID'),
+        status: "PENDING"
+      };
+
+      orders.unshift(newOrder);
+      localStorage.setItem('pt_orders', JSON.stringify(orders));
+
+      let msg = `Halo Admin Pahlawan Tugas,\n\nSaya mengonfirmasi pemesanan module prompt:\n`;
+      msg += `*ID Order:* ${newOrder.id}\n`;
+      msg += `*Nama Pembeli:* ${name}\n`;
+      msg += `*Email Gmail:* ${email}\n`;
+      msg += `*Module:* ${newOrder.productTitle}\n`;
+      msg += `*Pembayaran:* Rp 5.000 (BCA 4373208046)\n\n`;
+      msg += `Saya sudah mengunggah foto struk bukti bayar di website. Mohon verifikasi & kirimkan file prompt ke Gmail saya. Terima kasih!`;
+
+      const encoded = encodeURIComponent(msg);
+      window.open(`https://wa.me/${WA_NUMBER}?text=${encoded}`, '_blank');
+
+      showToast("Pesanan berhasil dikirim ke WA Admin!");
+      
+      document.getElementById('checkout-form').reset();
+      document.getElementById('receipt-preview-box').classList.add('hidden');
+      receiptBase64Data = "";
+    }
+
+    function selectProductForOrder(pid) {
+      document.getElementById('buyer-product-select').value = pid;
+    }
+
+    function copyPromptText(pid) {
+      const product = products.find(p => p.id === pid);
+      if (!product) return;
+
+      navigator.clipboard.writeText(product.content).then(() => {
+        showToast("Prompt berhasil disalin ke clipboard!");
+      }).catch(() => {
+        showToast("Gagal menyalin prompt.");
+      });
+    }
+
+    function copyRekening() {
+      const rek = document.getElementById('no-rek-text').innerText;
+      navigator.clipboard.writeText(rek).then(() => {
+        showToast("Nomor Rekening BCA berhasil disalin!");
+      });
+    }
+
+    function triggerAdminEntrance() {
+      openAdminLoginModal();
+    }
+
+    function openAdminLoginModal() {
+      document.getElementById('modal-login-admin').classList.remove('hidden');
+      document.getElementById('admin-pin-input').value = '';
+      document.getElementById('admin-pin-input').focus();
+    }
+
+    function closeAdminLoginModal() {
+      document.getElementById('modal-login-admin').classList.add('hidden');
+    }
+
+    function submitAdminLogin() {
+      const pin = document.getElementById('admin-pin-input').value.trim();
+      if (pin === ADMIN_PIN) {
+        isAdminLoggedIn = true;
+        closeAdminLoginModal();
+        switchViewToAdmin();
+        showToast("Berhasil Masuk Portal Admin Terpisah!");
+      } else {
+        showToast("PIN Admin Salah!");
+      }
+    }
+
+    function switchViewToAdmin() {
+      document.getElementById('store-view').classList.add('hidden');
+      document.getElementById('admin-view').classList.remove('hidden');
+      renderAdminDashboard();
+    }
+
+    function exitAdminView() {
+      isAdminLoggedIn = false;
+      document.getElementById('admin-view').classList.add('hidden');
+      document.getElementById('store-view').classList.remove('hidden');
+      window.location.hash = "";
+      renderProducts();
+      showToast("Keluar dari Portal Admin.");
+    }
+
+    function renderAdminDashboard() {
+      document.getElementById('stat-total-orders').innerText = orders.length;
+      document.getElementById('stat-verified-orders').innerText = orders.filter(o => o.status === 'VERIFIED').length;
+      document.getElementById('stat-total-products').innerText = products.length;
+
+      renderAdminOrdersList();
+      renderAdminProductsList();
+    }
+
+    function renderAdminOrdersList() {
+      const container = document.getElementById('admin-orders-list');
+
+      if (orders.length === 0) {
+        container.innerHTML = `<div class="text-center py-8 text-slate-500 text-xs">Belum ada pesanan masuk dari pembeli.</div>`;
+        return;
+      }
+
+      container.innerHTML = "";
+      orders.forEach(ord => {
+        const card = document.createElement('div');
+        card.className = "bg-slate-950 p-5 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4";
+        
+        card.innerHTML = `
+          <div class="space-y-1">
+            <div class="flex items-center space-x-2">
+              <span class="font-mono text-xs text-tech-red font-bold">${ord.id}</span>
+              <span class="text-xs text-slate-500">• ${ord.timestamp}</span>
+              ${ord.status === 'VERIFIED' 
+                ? `<span class="px-2.5 py-0.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[9px] font-bold uppercase rounded-full">Terverifikasi</span>`
+                : `<span class="px-2.5 py-0.5 bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[9px] font-bold uppercase rounded-full">Pending Verification</span>`
+              }
+            </div>
+            <p class="font-bold text-white text-sm">${ord.name} <span class="text-slate-400 font-normal">(${ord.email})</span></p>
+            <p class="text-xs text-tech-red font-semibold">${ord.productTitle}</p>
+          </div>
+
+          <div class="flex items-center space-x-3 w-full md:w-auto">
+            <button onclick="previewOrderReceipt('${ord.id}')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs text-white font-semibold rounded-xl flex items-center space-x-1.5">
+              <i class="fa-solid fa-receipt text-tech-red"></i>
+              <span>Foto Struk</span>
+            </button>
+
+            ${ord.status !== 'VERIFIED' ? `
+              <button onclick="verifyAndSendEmail('${ord.id}')" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition flex items-center space-x-2 shadow-lg shadow-emerald-600/20">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Verifikasi & Kirim Gmail</span>
+              </button>
+            ` : `
+              <button disabled class="px-5 py-2 bg-slate-800 text-slate-500 font-bold text-xs uppercase tracking-wider rounded-xl cursor-not-allowed">
+                Terkirim via Gmail
+              </button>
+            `}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function renderAdminProductsList() {
+      const container = document.getElementById('admin-products-list');
+      container.innerHTML = "";
+
+      products.forEach(p => {
+        const item = document.createElement('div');
+        item.className = "bg-slate-950 p-4 rounded-2xl border border-slate-800 flex items-center justify-between";
+        
+        item.innerHTML = `
+          <div>
+            <span class="text-[9px] font-extrabold uppercase text-tech-red px-2 py-0.5 bg-tech-red/10 rounded">${p.category}</span>
+            <h4 class="font-bold text-white text-sm mt-1">${p.title}</h4>
+            <span class="text-xs text-slate-400 font-mono">Rp 5.000</span>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <button onclick="openEditProductModal('${p.id}')" class="p-2 text-slate-400 hover:text-white text-xs">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button onclick="deleteProduct('${p.id}')" class="p-2 text-red-400 hover:text-red-300 text-xs">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        `;
+
+        container.appendChild(item);
+      });
+    }
+
+    async function verifyAndSendEmail(orderId) {
+      const ord = orders.find(o => o.id === orderId);
+      if (!ord) return;
+
+      const product = products.find(p => p.id === ord.productId);
+      const promptContent = product ? product.content : "";
+
+      if (!unlockedProductIds.includes(ord.productId)) {
+        unlockedProductIds.push(ord.productId);
+        localStorage.setItem('pt_unlocked', JSON.stringify(unlockedProductIds));
+      }
+
+      ord.status = "VERIFIED";
+      localStorage.setItem('pt_orders', JSON.stringify(orders));
+      renderAdminDashboard();
+
+      if (webhookUrl) {
+        try {
+          showToast("Mengirim file ke Gmail pembeli...");
+          const payload = {
+            email: ord.email,
+            nama: ord.name,
+            promptTitle: ord.productTitle,
+            promptContent: promptContent
+          };
+
+          await fetch(webhookUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          showToast("Pesanan diverifikasi & email terkirim!");
+        } catch (err) {
+          showToast("Verifikasi berhasil! Gagal menghubungi Webhook.");
+        }
+      } else {
+        showToast("Pesanan terverifikasi! (Belum set Webhook URL)");
+      }
+    }
+
+    function openWebhookModal() {
+      document.getElementById('webhook-url-input').value = webhookUrl;
+      document.getElementById('modal-webhook-settings').classList.remove('hidden');
+    }
+
+    function closeWebhookModal() {
+      document.getElementById('modal-webhook-settings').classList.add('hidden');
+    }
+
+    function saveWebhookSettings() {
+      webhookUrl = document.getElementById('webhook-url-input').value.trim();
+      localStorage.setItem('pt_webhook_url', webhookUrl);
+      closeWebhookModal();
+      showToast("URL Webhook Email Berhasil Disimpan!");
+    }
+
+    function previewOrderReceipt(orderId) {
+      const ord = orders.find(o => o.id === orderId);
+      if (!ord || !ord.receiptBase64) {
+        showToast("Tidak ada foto struk.");
+        return;
+      }
+      document.getElementById('modal-struk-img').src = ord.receiptBase64;
+      document.getElementById('modal-preview-struk').classList.remove('hidden');
+    }
+
+    function closeStrukModal() {
+      document.getElementById('modal-preview-struk').classList.add('hidden');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+
+    function openAddProductModal() {
+      document.getElementById('crud-modal-title').innerText = "Tambah Prompt Baru (Admin)";
+      document.getElementById('crud-product-id').value = "";
+      document.getElementById('crud-title').value = "";
+      document.getElementById('crud-category').value = "makalah";
+      document.getElementById('crud-desc').value = "";
+      document.getElementById('crud-content').value = "";
+      document.getElementById('modal-product-crud').classList.remove('hidden');
+    }
+
+    function openEditProductModal(pid) {
+      const p = products.find(item => item.id === pid);
+      if (!p) return;
+
+      document.getElementById('crud-modal-title').innerText = "Edit Prompt (Admin)";
+      document.getElementById('crud-product-id').value = p.id;
+      document.getElementById('crud-title').value = p.title;
+      document.getElementById('crud-category').value = p.category;
+      document.getElementById('crud-desc').value = p.desc;
+      document.getElementById('crud-content').value = p.content;
+      document.getElementById('modal-product-crud').classList.remove('hidden');
+    }
+
+    function closeProductCrudModal() {
+      document.getElementById('modal-product-crud').classList.add('hidden');
+    }
+
+    function saveProductCrud() {
+      const id = document.getElementById('crud-product-id').value;
+      const title = document.getElementById('crud-title').value.trim();
+      const category = document.getElementById('crud-category').value;
+      const desc = document.getElementById('crud-desc').value.trim();
+      const content = document.getElementById('crud-content').value.trim();
+
+      if (id) {
+        const p = products.find(item => item.id === id);
+        if (p) {
+          p.title = title;
+          p.category = category;
+          p.desc = desc;
+          p.content = content;
+        }
+      } else {
+        const newP = {
+          id: "p-custom-" + Date.now(),
+          category: category,
+          title: title,
+          rating: "5.0 (New)",
+          desc: desc,
+          content: content
+        };
+        products.push(newP);
+      }
+
+      closeProductCrudModal();
+      populateProductDropdown();
+      renderAdminDashboard();
+      showToast("Produk Prompt Berhasil Disimpan!");
+    }
+
+    function deleteProduct(pid) {
+      products = products.filter(p => p.id !== pid);
+      populateProductDropdown();
+      renderAdminDashboard();
+      showToast("Produk Prompt Berhasil Dihapus.");
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+
+</body>
+</html>
